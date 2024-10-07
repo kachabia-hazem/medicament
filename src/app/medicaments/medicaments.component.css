@@ -1,0 +1,74 @@
+.container {
+    margin-top: 20px;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    color: #28a745; /* Vert pharmacie */
+    font-weight: bold;
+  }
+  
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .btn-block {
+    margin-top: 10px;
+  }
+  
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  @media (min-width: 768px) {
+    .col-md-4 {
+      margin-bottom: 30px; /* Espacement entre les cartes */
+    }
+  }
+  /* Style pour les boutons de suppression */
+.btn-danger {
+    background-color: #e63946; /* Rouge doux pour alerter sans être agressif */
+    border-color: #e63946;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-danger:hover {
+    background-color: #d62839; /* Changement de couleur au survol */
+    border-color: #d62839;
+  }
+  
+  /* Style pour les boutons de modification */
+  .btn-warning {
+    background-color: #2d6a4f; /* Vert foncé santé */
+    border-color: #2d6a4f;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-warning:hover {
+    background-color: #1b4332; 
+    border-color: #1b4332;
+  }
+  
+  .btn-block {
+    padding: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  }
+  
+  

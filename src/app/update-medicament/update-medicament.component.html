@@ -1,0 +1,67 @@
+<div class="container">
+    <div>
+        <h2>Modifier un médicament</h2>
+    </div>
+    <form (ngSubmit)="updateMedicament(currentMedicament.name)">
+        <div class="row mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <label>Nom du médicament</label>
+                <input type="text" [(ngModel)]="currentMedicament.name" name="name" class="form-control" required>
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <label>Description du médicament</label>
+                <input type="text" [(ngModel)]="currentMedicament.description" name="description" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <label>Prix du médicament</label>
+                <input type="number" [(ngModel)]="currentMedicament.prix" name="prix" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <label>Marque</label>
+                <input type="text" [(ngModel)]="currentMedicament.marque" name="marque" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <label>URL d'image</label>
+                <input type="text" [(ngModel)]="currentMedicament.url" name="url" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <label>Code du médicament</label>
+                <input type="number" [(ngModel)]="currentMedicament.code" name="code" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <label>Date de création</label>
+                <input type="date" [(ngModel)]="currentMedicament.creationDate" name="creationDate" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <label>Date d'expiration</label>
+                <input type="date" [(ngModel)]="currentMedicament.expirationDate" name="expirationDate" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <button type="submit" class="btn btn-success">Modifier</button>
+        </div>
+    </form>
+</div>
+<router-outlet></router-outlet>
