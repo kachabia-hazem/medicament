@@ -1,67 +1,78 @@
 <div class="container py-5">
-    <div class="text-center mb-4">
-      <h2 class="display-5 text-success">Ajouter un nouveau médicament</h2>
-    </div>
-    <form (ngSubmit)="addMedicament()">
-      <div class="row mb-4">
-        <div class="col-lg-6">
-          <label class="form-label">Nom du médicament</label>
-          <input type="text" [(ngModel)]="newMedicament.name" name="name" class="form-control shadow-sm" placeholder="Nom" required>
-        </div>
-      </div>
-      
-      <div class="row mb-4">
-        <div class="col-lg-6">
-          <label class="form-label">Description du médicament</label>
-          <input type="text" [(ngModel)]="newMedicament.description" name="description" class="form-control shadow-sm" placeholder="Description" required>
-        </div>
-      </div>
-  
-      <div class="row mb-4">
-        <div class="col-lg-6">
-          <label class="form-label">Prix du médicament (TND)</label>
-          <input type="number" [(ngModel)]="newMedicament.prix" name="prix" class="form-control shadow-sm" placeholder="Prix" required>
-        </div>
-      </div>
-  
-      <div class="row mb-4">
-        <div class="col-lg-6">
-          <label class="form-label">Marque</label>
-          <input type="text" [(ngModel)]="newMedicament.marque" name="marque" class="form-control shadow-sm" placeholder="Marque" required>
-        </div>
-      </div>
-  
-      <div class="row mb-4">
-        <div class="col-lg-6">
-          <label class="form-label">URL de l'image</label>
-          <input type="text" [(ngModel)]="newMedicament.url" name="url" class="form-control shadow-sm" placeholder="Lien de l'image" required>
-        </div>
-      </div>
-  
-      <div class="row mb-4">
-        <div class="col-lg-6">
-          <label class="form-label">Code du médicament</label>
-          <input type="number" [(ngModel)]="newMedicament.code" name="code" class="form-control shadow-sm" placeholder="Code" required>
-        </div>
-      </div>
-  
-      <div class="row mb-4">
-        <div class="col-lg-6">
-          <label class="form-label">Date de création</label>
-          <input type="date" [(ngModel)]="newMedicament.creationDate" name="creationDate" class="form-control shadow-sm" required>
-        </div>
-      </div>
-  
-      <div class="row mb-4">
-        <div class="col-lg-6">
-          <label class="form-label">Date d'expiration</label>
-          <input type="date" [(ngModel)]="newMedicament.expirationDate" name="expirationDate" class="form-control shadow-sm" required>
-        </div>
-      </div>
-  
-      <div class="text-center">
-        <button type="submit" class="btn btn-success btn-lg shadow-sm">Ajouter</button>
-      </div>
-    </form>
+  <div class="text-center mb-4">
+    <h2 class="display-5 text-success">Ajouter un nouveau médicament</h2>
   </div>
-  
+  <form (ngSubmit)="addMedicament()">
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <label class="form-label">Nom du médicament</label>
+        <input type="text" [(ngModel)]="newMedicament.name" name="name" class="form-control shadow-sm" placeholder="Nom" required>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <label class="form-label">Description du médicament</label>
+        <input type="text" [(ngModel)]="newMedicament.description" name="description" class="form-control shadow-sm" placeholder="Description" required>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <label class="form-label">Prix du médicament (TND)</label>
+        <input type="number" [(ngModel)]="newMedicament.prix" name="prix" class="form-control shadow-sm" placeholder="Prix" required>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <label class="form-label">Marque</label>
+        <input type="text" [(ngModel)]="newMedicament.marque" name="marque" class="form-control shadow-sm" placeholder="Marque" required>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <label class="form-label">URL de l'image</label>
+        <input type="text" [(ngModel)]="newMedicament.url" name="url" class="form-control shadow-sm" placeholder="Lien de l'image" required>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <label class="form-label">Code du médicament</label>
+        <input type="number" [(ngModel)]="newMedicament.code" name="code" class="form-control shadow-sm" placeholder="Code" required>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <label class="form-label">Date de création</label>
+        <input type="date" [(ngModel)]="newMedicament.creationDate" name="creationDate" class="form-control shadow-sm" required>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <label class="form-label">Date d'expiration</label>
+        <input type="date" [(ngModel)]="newMedicament.expirationDate" name="expirationDate" class="form-control shadow-sm" required>
+      </div>
+    </div>
+
+    <!-- Classification -->
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <label class="form-label">Classification</label>
+        <select class="form-control form-control-lg" id="idclass" name="idclass" [(ngModel)]="newIdclass">
+          <option *ngFor="let class of classification" [value]="class.idclass">
+            {{ class.nomclass }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success btn-lg shadow-sm">Ajouter</button>
+    </div>
+  </form>
+</div>

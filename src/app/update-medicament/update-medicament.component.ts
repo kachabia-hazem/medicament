@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicamentService } from '../services/medicament.service';
-import { Medicament } from '../medicaments/medicaments.component';
+import { Classification, Medicament } from '../medicaments/medicaments.component';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 })
 export class UpdateMedicamentComponent implements OnInit {
   currentMedicament!: Medicament;
+  classifications!:Classification[];
+  updateClassId!:number;
+
 
   constructor(
     private medicamentService: MedicamentService,
@@ -19,6 +22,7 @@ export class UpdateMedicamentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.classifications=this.medicamentService.ListeClassification();
 
     const medicamentName = this.route.snapshot.paramMap.get('name');
 
@@ -33,9 +37,13 @@ export class UpdateMedicamentComponent implements OnInit {
     } else {
       console.log('Nom de médicament non fourni.');
     }
+    this.updateClassId=this.currentMedicament.classification.idclass;
   }
 
   updateMedicament(name: string): void {
+    this.currentMedicament.classification=this.medicamentService.consulterClassification(this.updateClassId);
+    this.medicamentService.updateMedicamentByName(this.currentMedicament.name,this.currentMedicament);
+  
 
     this.medicamentService.updateMedicamentByName(name, this.currentMedicament);
     console.log(`Médicament ${name} mis à jour : `, this.currentMedicament);

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicamentService } from '../services/medicament.service';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -12,7 +14,12 @@ export interface Medicament {
   categorie: string;      
   code: number;            
   creationDate: Date;     
-  expirationDate: Date;  
+  expirationDate: Date;
+  classification:Classification;  
+}
+export class Classification{
+  idclass!:number;
+  nomclass!:string;
 }
 
 @Component({
@@ -29,15 +36,27 @@ export class MedicamentsComponent implements OnInit  {
   ngOnInit() {
     this.medicaments = this.medicamentService.getMedicaments();
   }
-  supprimerMedicament(med: Medicament){
-    const index=this.medicaments.indexOf(med,0);
-    if(index> -1){
-      this.medicaments.splice(index,1);
-    }
-
-    console.log(med);
-
+  supprimerMedicament(med: Medicament) {
+    Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text: "Vous ne pourrez pas revenir en arrière !",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer !"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.medicamentService.supprimerMedicament(med);
+        Swal.fire({
+          title: "Supprimé !",
+          text: "Votre médicament a été supprimé.",
+          icon: "success"
+        });
+      }
+    });
   }
+  
   editMedicament(med: Medicament) {
     
     this.medicamentService.medicament = med;
