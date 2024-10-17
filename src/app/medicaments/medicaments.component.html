@@ -8,15 +8,15 @@
           <h5 class="card-title text-success font-weight-bold">{{ medicament.name }}</h5>
           <p class="card-text text-muted">{{ medicament.description }}</p>
           <p class="card-text"><strong>Prix : </strong>{{ medicament.prix }} TND</p>
-          <p class="card-text"><strong>Catégorie : </strong>{{ medicament.categorie }}</p>
           <p class="card-text"><strong>Code : </strong>{{ medicament.code }}</p>
           <p class="card-text"><strong>Marque : </strong>{{ medicament.marque }}</p>
           <p class="card-text"><strong>Date de création : </strong>{{ medicament.creationDate | date:'dd/MM/yyyy' }}</p>
           <p class="card-text"><strong>Date d'expiration : </strong>{{ medicament.expirationDate | date:'dd/MM/yyyy' }}</p>
           <p class="card-text"><strong>classification : </strong>{{ medicament.classification.nomclass }}</p>
-
           <button (click)="supprimerMedicament(medicament)" class="btn btn-danger btn-block">Supprimer</button>
           <button class="btn btn-warning btn-block" [routerLink]="['/updateMedicament',medicament.name]">Modifier</button>
+
+         
         </div>
       </div>
     </div>

@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { AddMedicamentComponent } from './add-medicament/add-medicament.component';
 import { MedicamentsComponent } from './medicaments/medicaments.component';
 import { UpdateMedicamentComponent } from './update-medicament/update-medicament.component';
+import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
+import { RichercheParNomComponent } from './richerche-par-nom/richerche-par-nom.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AddMedicamentComponent,
     MedicamentsComponent,
-    UpdateMedicamentComponent
+    UpdateMedicamentComponent,
+    RechercheParCategorieComponent,
+    RichercheParNomComponent,
+  
   ],
   imports: [
     BrowserModule,

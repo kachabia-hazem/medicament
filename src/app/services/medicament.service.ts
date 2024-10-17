@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Classification, Medicament } from '../medicaments/medicaments.component';
 
 @Injectable({
@@ -6,7 +7,9 @@ import { Classification, Medicament } from '../medicaments/medicaments.component
 })
 export class MedicamentService {
   medicament!: Medicament;
-  classifications: Classification[] = [ // Utilisation correcte sans duplication
+  medicamentsRecherche: Medicament[] = [];  
+
+  classifications: Classification[] = [
     { idclass: 1, nomclass: 'Analgésique' },
     { idclass: 2, nomclass: 'Antibiotique' },
     { idclass: 3, nomclass: 'Antiviraux' },
@@ -60,22 +63,35 @@ export class MedicamentService {
   getMedicamentByName(name: string): Medicament | undefined {
     return this.medicaments.find(m => m.name === name);
   }
-  ListeClassification():Classification[]{
+
+  ListeClassification(): Classification[] {
     return this.classifications;
   }
-  consulterClassification(id:number):Classification{
-    return this.classifications.find(cat => cat.idclass == id)!;
+
+  consulterClassification(id: number): Classification {
+    return this.classifications.find(cat => cat.idclass === id)!;
   }
-  supprimerMedicament(med: Medicament){
-    const index=this.medicaments.indexOf(med,0);
-    if(index> -1){
-      this.medicaments.splice(index,1);
+
+  supprimerMedicament(med: Medicament) {
+    const index = this.medicaments.indexOf(med, 0);
+    if (index > -1) {
+      this.medicaments.splice(index, 1);
     }
-
     console.log(med);
-
   }
-  
-  
 
+  listerMedicaments(): Medicament[] {
+    return this.medicaments;
+  }
+
+  rechercherParClassification(idclass: number): Medicament[] {
+    console.log(idclass);
+    return this.medicaments.filter(medicament => medicament.classification.idclass == idclass);
+  }
+
+
+  rechercherParNom(nom: string): Observable<Medicament[]> {
+    const medicamentsTrouves = this.medicaments.filter(med => med.name.toLowerCase().includes(nom.toLowerCase()));
+    return of(medicamentsTrouves); // Utilisation de `of` pour retourner un Observable
+  }
 }
