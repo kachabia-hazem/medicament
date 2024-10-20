@@ -8,6 +8,7 @@ import { MedicamentsComponent } from './medicaments/medicaments.component';
 import { UpdateMedicamentComponent } from './update-medicament/update-medicament.component';
 import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
 import { RichercheParNomComponent } from './richerche-par-nom/richerche-par-nom.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { RichercheParNomComponent } from './richerche-par-nom/richerche-par-nom.
     UpdateMedicamentComponent,
     RechercheParCategorieComponent,
     RichercheParNomComponent,
+    LoginComponent,
   
   ],
   imports: [

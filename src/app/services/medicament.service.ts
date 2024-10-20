@@ -92,6 +92,6 @@ export class MedicamentService {
 
   rechercherParNom(nom: string): Observable<Medicament[]> {
     const medicamentsTrouves = this.medicaments.filter(med => med.name.toLowerCase().includes(nom.toLowerCase()));
-    return of(medicamentsTrouves); // Utilisation de `of` pour retourner un Observable
-  }
+    return of(medicamentsTrouves); 
+  } 
 }

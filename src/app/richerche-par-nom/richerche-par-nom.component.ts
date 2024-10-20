@@ -18,7 +18,7 @@ export class RichercheParNomComponent {
         console.log(medicaments);
       });
     }
-  
+    
 
   
 

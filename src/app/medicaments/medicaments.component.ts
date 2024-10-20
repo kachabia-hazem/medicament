@@ -35,6 +35,7 @@ export class MedicamentsComponent implements OnInit  {
 
   ngOnInit() {
     this.medicaments = this.medicamentService.getMedicaments();
+    console.log(this.medicaments);
   }
   supprimerMedicament(med: Medicament) {
     Swal.fire({

@@ -8,6 +8,8 @@ import { RichercheParNomComponent } from './richerche-par-nom/richerche-par-nom.
 
 
 const routes: Routes = [
+
+
   {path:"medicaments", component:MedicamentsComponent },
   {path:"add-medicament",component:AddMedicamentComponent},
   {path:"updateMedicament/:name",component:UpdateMedicamentComponent},

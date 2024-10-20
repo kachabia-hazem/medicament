@@ -63,8 +63,8 @@
         <div class="row mb-4">
             <div class="col-lg-6">
                 <label class="form-label">Classification</label>
-                <select class="form-control form-control-lg" id="idclass" name="idclass" [(ngModel)]="updateClassId" required>
-                    <option *ngFor="let class of classifications" [value]="class.idclass">
+                <select class="form-control form-control-lg" id="idclass" name="idclass" [(ngModel)]="currentMedicament.classification" required>
+                    <option *ngFor="let class of classifications" [ngValue]="class">
                         {{ class.nomclass }}
                     </option>
                 </select>
