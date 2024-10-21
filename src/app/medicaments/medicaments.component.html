@@ -12,11 +12,12 @@
           <p class="card-text"><strong>Marque : </strong>{{ medicament.marque }}</p>
           <p class="card-text"><strong>Date de création : </strong>{{ medicament.creationDate | date:'dd/MM/yyyy' }}</p>
           <p class="card-text"><strong>Date d'expiration : </strong>{{ medicament.expirationDate | date:'dd/MM/yyyy' }}</p>
-          <p class="card-text"><strong>classification : </strong>{{ medicament.classification.nomclass }}</p>
-          <button (click)="supprimerMedicament(medicament)" class="btn btn-danger btn-block">Supprimer</button>
-          <button class="btn btn-warning btn-block" [routerLink]="['/updateMedicament',medicament.name]">Modifier</button>
-
-         
+          <p class="card-text"><strong>Classification : </strong>{{ medicament.classification.nomclass }}</p>
+          
+          <div class="text-center">
+            <button (click)="supprimerMedicament(medicament)" class="btn btn-danger btn-block">Supprimer</button>
+            <button class="btn btn-warning btn-block" [routerLink]="['/updateMedicament', medicament.name]">Modifier</button>
+          </div>
         </div>
       </div>
     </div>

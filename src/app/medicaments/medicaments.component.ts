@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicamentService } from '../services/medicament.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../services/auth.service';
 
 
 
@@ -31,7 +32,9 @@ export class MedicamentsComponent implements OnInit  {
 
   medicaments: Medicament[] = [];
 
-  constructor(private medicamentService: MedicamentService) {}
+  constructor(private medicamentService: MedicamentService,
+    public authservice:AuthService
+  ) {}
 
   ngOnInit() {
     this.medicaments = this.medicamentService.getMedicaments();
