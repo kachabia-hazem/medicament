@@ -1,55 +1,67 @@
-<div class="container mt-5">
-    <div class="row justify-content-md-center">
-      <div class="col-md-4">
-        <form>
-          <div class="form-group">
-            <label for="username">Nom Utilisateur :</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              class="form-control"
-              [(ngModel)]="user.username"
-              placeholder="Entrez votre nom d'utilisateur"
-              required
-            />
+<div class="container py-5">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <div class="text-center mb-4">
+        <h2 class="display-5 text-success">Connexion</h2>
+      </div>
+
+      <form>
+        <!-- Nom d'utilisateur -->
+        <div class="row mb-4">
+          <div class="col-lg-12">
+            <label for="username" class="form-label">Nom Utilisateur</label>
+            <input 
+              type="text" 
+              name="username" 
+              id="username" 
+              class="form-control shadow-sm" 
+              [(ngModel)]="user.username" 
+              placeholder="Entrez votre nom d'utilisateur" 
+              required>
           </div>
-  
-          <div class="form-group">
-            <label for="password">Mot de passe :</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              class="form-control"
-              [(ngModel)]="user.password"
-              placeholder="Entrez votre mot de passe"
-              required
-            />
+        </div>
+
+        <!-- Mot de passe -->
+        <div class="row mb-4">
+          <div class="col-lg-12">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input 
+              type="password" 
+              name="password" 
+              id="password" 
+              class="form-control shadow-sm" 
+              [(ngModel)]="user.password" 
+              placeholder="Entrez votre mot de passe" 
+              required>
           </div>
-          <p>vous n avez pas un compte?<a routerLink="/register">s'inscrire</a></p>
-  
-          
-          <div class="row justify-content-md-center">
-            <button
-              type="button"
-              (click)="onLoggedin()"
-              class="btn btn-success mt-3"
-            >
-              Connexion
-            </button>
-          </div>
-          
-  
-          <div class="row justify-content-md-center mt-3">
-            <div class="col-md-12">
-              <div class="alert alert-danger" *ngIf="erreur == 1">
-                <strong>Login ou mot de passe erronés..</strong>
-              </div>
+        </div>
+
+        <!-- Lien inscription -->
+        <div class="text-center mb-4">
+          <p class="text-muted">Vous n'avez pas encore de compte ? 
+            <a routerLink="/register" class="text-success">S'inscrire</a>
+          </p>
+        </div>
+
+        <!-- Bouton Connexion -->
+        <div class="row justify-content-md-center">
+          <button 
+            type="button" 
+            (click)="onLoggedin()" 
+            class="btn btn-success btn-lg shadow-sm">
+            Connexion
+          </button>
+        </div>
+
+        <!-- Message d'erreur -->
+        <div class="row justify-content-md-center mt-3">
+          <div class="col-md-12">
+            <div class="alert alert-danger" *ngIf="erreur == 1">
+              <strong>Login ou mot de passe erronés.</strong>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
-  
+</div>

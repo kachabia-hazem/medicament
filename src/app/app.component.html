@@ -10,6 +10,7 @@
       <li class="nav-item active">
         <a class="nav-link text-white" routerLink="/medicaments">Accueil</a>
       </li>
+        
       <li class="nav-item">
         <a class="nav-link text-white" routerLink="/add-medicament">Ajouter Produits</a>
       </li>
@@ -27,6 +28,10 @@
       <li class="nav-item">
         <a class="nav-link text-white" routerLink="/richercheParnom">Recherche par Nom</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/listeCategories">Gestion des Classification</a>
+      </li>
+
     </ul>
 
     <!-- Zone de recherche -->
@@ -44,19 +49,17 @@
       <button class="btn btn-outline-light" (click)="authService.logout()">Déconnexion</button>
     </li>
     <li *ngIf="!authService.isloggedIn" class="nav-item">
-      <a class="dropdown-item" routerLink="/login">login</a>
+    
     </li>
     <li *ngIf="authService.isloggedIn" class="nav-item">
-      <a class="dropdown-item" (click)="authService.logout()">logout</a>
+      
     </li>
     <li *ngIf="!authService.isloggedIn" class="nav-item">
       <a class="nav-link text-white" routerLink="/login">Connexion</a>
     </li>
-    <!-- Lien Ajouter pour l'administrateur seulement -->
-    <li *ngIf="authService.isAdmin()" class="nav-item">
-      <a class="nav-link text-white" routerLink="/add-produit">Ajouter</a>
-    </li>
-   
+    
+  
+  
   </ul>
 </nav>
 

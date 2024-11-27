@@ -2,32 +2,32 @@
     <div class="text-center mb-4">
         <h2 class="display-5 text-success">Modifier un médicament</h2>
     </div>
-    <form (ngSubmit)="updateMedicament(currentMedicament.name)">
+    <form (ngSubmit)="updateMedicament()">
         <div class="row mb-4">
             <div class="col-lg-6">
                 <label class="form-label">Nom du médicament</label>
-                <input type="text" [(ngModel)]="currentMedicament.name" name="name" class="form-control shadow-sm" placeholder="Nom" required>
+                <input type="text" [(ngModel)]="currentMedicament.nomMed" name="name" class="form-control shadow-sm" placeholder="Nom" required>
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-lg-6">
                 <label class="form-label">Description du médicament</label>
-                <input type="text" [(ngModel)]="currentMedicament.description" name="description" class="form-control shadow-sm" placeholder="Description" required>
+                <input type="text" [(ngModel)]="currentMedicament.descMed" name="description" class="form-control shadow-sm" placeholder="Description" required>
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-lg-6">
                 <label class="form-label">Prix du médicament (TND)</label>
-                <input type="number" [(ngModel)]="currentMedicament.prix" name="prix" class="form-control shadow-sm" placeholder="Prix" required>
+                <input type="number" [(ngModel)]="currentMedicament.prixMed" name="prix" class="form-control shadow-sm" placeholder="Prix" required>
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-lg-6">
                 <label class="form-label">Marque</label>
-                <input type="text" [(ngModel)]="currentMedicament.marque" name="marque" class="form-control shadow-sm" placeholder="Marque" required>
+                <input type="text" [(ngModel)]="currentMedicament.marqueMed" name="marque" class="form-control shadow-sm" placeholder="Marque" required>
             </div>
         </div>
 
@@ -48,14 +48,14 @@
         <div class="row mb-4">
             <div class="col-lg-6">
                 <label class="form-label">Date de création</label>
-                <input type="date" [(ngModel)]="currentMedicament.creationDate" name="creationDate" class="form-control shadow-sm" required>
+                <input type="date" [(ngModel)]="currentMedicament.dateCreation" name="creationDate" class="form-control shadow-sm" required>
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-lg-6">
                 <label class="form-label">Date d'expiration</label>
-                <input type="date" [(ngModel)]="currentMedicament.expirationDate" name="expirationDate" class="form-control shadow-sm" required>
+                <input type="date" [(ngModel)]="currentMedicament.dateExpiration" name="expirationDate" class="form-control shadow-sm" required>
             </div>
         </div>
 
@@ -63,13 +63,19 @@
         <div class="row mb-4">
             <div class="col-lg-6">
                 <label class="form-label">Classification</label>
-                <select class="form-control form-control-lg" id="idclass" name="idclass" [(ngModel)]="currentMedicament.classification" required>
-                    <option *ngFor="let class of classifications" [ngValue]="class">
-                        {{ class.nomclass }}
+                <select 
+                    class="form-control form-control-lg" 
+                    id="idClass" 
+                    name="idClass" 
+                    [(ngModel)]="updatedClassId" 
+                    required>
+                    <option *ngFor="let class of classifications" [value]="class.idClass">
+                        {{ class.nomClass }}
                     </option>
                 </select>
             </div>
         </div>
+        
 
         <div class="text-center">
             <button type="submit" class="btn btn-success btn-lg shadow-sm">Modifier</button>

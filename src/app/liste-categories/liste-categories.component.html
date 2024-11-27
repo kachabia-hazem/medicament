@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <app-update-categorie
+      [classification]="updatedClass"
+      [ajout]="ajout"
+      (classificationUpdated)="classificationUpdated($event)"
+    >
+    </app-update-categorie>
+  </div>
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom Classification</th>
+            <th>Description Classification</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cat of classifications">
+            <td>{{ cat.idClass }}</td>
+            <td>{{ cat.nomClass }}</td>
+            <td>{{ cat.descriptionClass }}</td>
+            <td>
+              <a class="btn btn-success" (click)="updateClassification(cat)">Editer</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -2,60 +2,113 @@
   <div class="text-center mb-4">
     <h2 class="display-5 text-success">Ajouter un nouveau médicament</h2>
   </div>
-  <form (ngSubmit)="addMedicament()">
+  <form [formGroup]="myForm" (ngSubmit)="addMedicament()">
+    
+    <!-- Message d'erreur global -->
+    <div class="alert alert-danger" *ngIf="myForm.invalid && myForm.touched">
+      <strong>Veuillez corriger les erreurs du formulaire avant de soumettre.</strong>
+    </div>
+
+    <!-- Nom du médicament -->
     <div class="row mb-4">
       <div class="col-lg-6">
         <label class="form-label">Nom du médicament</label>
-        <input type="text" [(ngModel)]="newMedicament.name" name="name" class="form-control shadow-sm" placeholder="Nom" required>
+        <input type="text" formControlName="name" class="form-control shadow-sm" placeholder="Nom">
+        <span *ngIf="myForm.get('name')?.hasError('required') && myForm.get('name')?.touched" class="text-danger">
+          Le nom est obligatoire
+        </span>
+        <span *ngIf="myForm.get('name')?.hasError('minlength') && myForm.get('name')?.touched" class="text-danger">
+          Le nom doit contenir au moins 5 caractères
+        </span>
       </div>
     </div>
 
+    <!-- Description du médicament -->
     <div class="row mb-4">
       <div class="col-lg-6">
         <label class="form-label">Description du médicament</label>
-        <input type="text" [(ngModel)]="newMedicament.description" name="description" class="form-control shadow-sm" placeholder="Description" required>
+        <input type="text" formControlName="description" class="form-control shadow-sm" placeholder="Description">
+        <span *ngIf="myForm.get('description')?.hasError('required') && myForm.get('description')?.touched" class="text-danger">
+          La description est obligatoire
+        </span>
       </div>
     </div>
 
+    <!-- Prix du médicament (TND) -->
     <div class="row mb-4">
       <div class="col-lg-6">
         <label class="form-label">Prix du médicament (TND)</label>
-        <input type="number" [(ngModel)]="newMedicament.prix" name="prix" class="form-control shadow-sm" placeholder="Prix" required>
+        <input type="number" formControlName="prix" class="form-control shadow-sm" placeholder="Prix">
+        <span *ngIf="myForm.get('prix')?.hasError('required') && myForm.get('prix')?.touched" class="text-danger">
+          Le prix est obligatoire
+        </span>
+        <span *ngIf="myForm.get('prix')?.hasError('prixNegatifOuZero') && myForm.get('prix')?.touched" class="text-danger">
+          Le prix doit être supérieur à zéro
+        </span>
       </div>
     </div>
 
+    <!-- Marque -->
     <div class="row mb-4">
       <div class="col-lg-6">
         <label class="form-label">Marque</label>
-        <input type="text" [(ngModel)]="newMedicament.marque" name="marque" class="form-control shadow-sm" placeholder="Marque" required>
+        <input type="text" formControlName="marque" class="form-control shadow-sm" placeholder="Marque">
+        <span *ngIf="myForm.get('marque')?.hasError('required') && myForm.get('marque')?.touched" class="text-danger">
+          La marque est obligatoire
+        </span>
+        <span *ngIf="myForm.get('marque')?.hasError('minlength') && myForm.get('marque')?.touched" class="text-danger">
+          La marque doit contenir au moins 3 caractères
+        </span>
       </div>
     </div>
 
+    <!-- URL de l'image -->
     <div class="row mb-4">
       <div class="col-lg-6">
         <label class="form-label">URL de l'image</label>
-        <input type="text" [(ngModel)]="newMedicament.url" name="url" class="form-control shadow-sm" placeholder="Lien de l'image" required>
+        <input type="text" formControlName="url" class="form-control shadow-sm" placeholder="Lien de l'image">
+        <span *ngIf="myForm.get('url')?.hasError('required') && myForm.get('url')?.touched" class="text-danger">
+          L'URL est obligatoire
+        </span>
+        <span *ngIf="myForm.get('url')?.hasError('pattern') && myForm.get('url')?.touched" class="text-danger">
+          L'URL doit être valide
+        </span>
       </div>
     </div>
 
+    <!-- Code du médicament -->
     <div class="row mb-4">
       <div class="col-lg-6">
         <label class="form-label">Code du médicament</label>
-        <input type="number" [(ngModel)]="newMedicament.code" name="code" class="form-control shadow-sm" placeholder="Code" required>
+        <input type="number" formControlName="code" class="form-control shadow-sm" placeholder="Code">
+        <span *ngIf="myForm.get('code')?.hasError('required') && myForm.get('code')?.touched" class="text-danger">
+          Le code est obligatoire
+        </span>
+        <span *ngIf="myForm.get('code')?.hasError('minlength') && myForm.get('code')?.touched" class="text-danger">
+          Le code doit contenir au moins 2 chiffres
+        </span>
       </div>
     </div>
 
+    <!-- Date de création -->
     <div class="row mb-4">
       <div class="col-lg-6">
         <label class="form-label">Date de création</label>
-        <input type="date" [(ngModel)]="newMedicament.creationDate" name="creationDate" class="form-control shadow-sm" required>
+        <input type="date" formControlName="creationDate" class="form-control shadow-sm">
+        <span *ngIf="myForm.get('creationDate')?.hasError('required') && myForm.get('creationDate')?.touched" class="text-danger">
+          La date de création est obligatoire
+        </span>
       </div>
     </div>
 
+    <!-- Date d'expiration -->
     <div class="row mb-4">
       <div class="col-lg-6">
         <label class="form-label">Date d'expiration</label>
-        <input type="date" [(ngModel)]="newMedicament.expirationDate" name="expirationDate" class="form-control shadow-sm" required>
+        <input type="date" formControlName="expirationDate" class="form-control shadow-sm">
+        <span *ngIf="myForm.get('expirationDate')?.hasError('required') && myForm.get('expirationDate')?.touched" class="text-danger">
+          La date d'expiration est obligatoire
+        </span>
       </div>
     </div>
 
@@ -63,16 +116,31 @@
     <div class="row mb-4">
       <div class="col-lg-6">
         <label class="form-label">Classification</label>
-        <select class="form-control form-control-lg" id="idclass" name="idclass" [(ngModel)]="newIdclass">
-          <option *ngFor="let class of classification" [value]="class.idclass">
-            {{ class.nomclass }}
+        <select
+          formControlName="classification"
+          class="form-control form-control-lg"
+        >
+          <option value="" disabled selected>Sélectionnez une classification</option>
+          <option *ngFor="let class of classifications" [value]="class.idClass">
+            {{ class.nomClass }}
           </option>
         </select>
+        <span
+          *ngIf="
+            myForm.get('classification')?.hasError('required') &&
+            myForm.get('classification')?.touched
+          "
+          class="text-danger"
+        >
+          La classification est obligatoire
+        </span>
       </div>
     </div>
+    
 
+    <!-- Bouton d'ajout -->
     <div class="text-center">
-      <button type="submit" class="btn btn-success btn-lg shadow-sm">Ajouter</button>
+      <button type="submit" class="btn btn-success btn-lg shadow-sm" [disabled]="myForm.invalid">Ajouter</button>
     </div>
   </form>
 </div>

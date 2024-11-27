@@ -2,25 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { MedicamentService } from '../services/medicament.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+
 
 
 
 
 export interface Medicament {
-  name: string;            
-  description: string;   
-  prix: number;            
-  marque: string;         
+  idMed:number;
+  nomMed: string;            
+  descMed: string;   
+  prixMed: number;            
+  marqueMed: string;         
   url: string;             
   categorie: string;      
   code: number;            
-  creationDate: Date;     
-  expirationDate: Date;
+  dateCreation: Date;     
+  dateExpiration: Date;
   classification:Classification;  
 }
 export class Classification{
-  idclass!:number;
-  nomclass!:string;
+  idClass!:number;
+  descriptionClass!:string;
+  nomClass!:string;
 }
 
 @Component({
@@ -33,14 +37,35 @@ export class MedicamentsComponent implements OnInit  {
   medicaments: Medicament[] = [];
 
   constructor(private medicamentService: MedicamentService,
-    public authservice:AuthService
+    public authservice:AuthService,private router: Router
   ) {}
 
   ngOnInit() {
-    this.medicaments = this.medicamentService.getMedicaments();
-    console.log(this.medicaments);
-  }
-  supprimerMedicament(med: Medicament) {
+    /* this.medicaments = this.medicamentService.getMedicaments();
+    console.log(this.medicaments); */
+    this.chargerMedicaments();
+    
+      };
+      chargerMedicaments(){
+        this.medicamentService.listeMedicaments().subscribe(meds => {
+          console.log(meds);
+          this.medicaments = meds;});}
+
+          supprimerProduit(m: Medicament)
+          {
+          let conf = confirm("Etes-vous sûr ?");
+          if (conf)
+          this.medicamentService.supprimerMedicament(m.idMed).subscribe(() => {
+          console.log("produit supprimé");
+          this.chargerMedicaments();
+          });
+          }     
+
+          
+      
+
+  
+  /* supprimerMedicament(med: Medicament) {
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "Vous ne pourrez pas revenir en arrière !",
@@ -59,11 +84,13 @@ export class MedicamentsComponent implements OnInit  {
         });
       }
     });
-  }
+  } */
+
   
-  editMedicament(med: Medicament) {
-    
-    this.medicamentService.medicament = med;
+    Navigate(med: string) {
+      
+      this.router.navigate(['/updateMedicament'], { queryParams: { nomMed: med } });
+    // this.medicamentService.medicament = med;
     
   }
   

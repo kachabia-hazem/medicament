@@ -27,15 +27,15 @@ export class RegisterComponent implements OnInit {
 
   onRegister() {
     if (this.myForm.invalid) {
-      return; // Ne pas soumettre si le formulaire est invalide
+      return; 
     }
 
-    this.loading = true; // Activation du spinner de chargement
+    this.loading = true; 
 
-    // Simulez une requête ou traitement (peut être remplacé par un appel API réel)
+    
     setTimeout(() => {
       console.log(this.user);
-      this.loading = false; // Désactivation du spinner après traitement
-    }, 2000); // Simulation d'une requête de 2 secondes
+      this.loading = false; 
+    }, 2000); 
   }
 }

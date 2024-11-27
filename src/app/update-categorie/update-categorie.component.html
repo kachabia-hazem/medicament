@@ -1,0 +1,37 @@
+<form (ngSubmit)="saveCategorie(ajout)">
+    <div [hidden]="ajout">
+      <!-- Additional fields can be added here for modification -->
+    </div>
+    <div>
+      <label>Nom Classification</label>
+      <input
+        type="text"
+        [(ngModel)]="classification.nomClass"
+        name="nomClassification"
+        class="form-control"
+        placeholder="Entrez un nom de Classification..."
+        required
+      />
+    </div>
+    <div>
+      <label>Description de Classification</label>
+      <input
+        type="text"
+        [(ngModel)]="classification.descriptionClass"
+        name="descriptionClass"
+        class="form-control"
+        placeholder="Entrez Description de Classification"
+        required
+      />
+    </div>
+    <div class="mt-2">
+      <button
+        type="submit"
+        [disabled]="!classification.nomClass"
+        class="btn btn-success"
+      >
+        {{ ajout ? 'Ajouter' : 'Modifier' }}
+      </button>
+    </div>
+  </form>
+  

@@ -1,10 +1,10 @@
 <div class="container mt-4">
   <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
-    <label for="idclass" class="font-weight-bold text-success">Classification</label>
-    <select class="form-control form-control-lg border-success" id="idclass" [(ngModel)]="IdClassification" (change)="OnChange()">
+    <label for="idClass" class="font-weight-bold text-success">Classification</label>
+    <select class="form-control form-control-lg border-success" id="idClass" [(ngModel)]="idClassification" (change)="OnChange()">
       <option value="" disabled selected>Choisissez une classification</option> <!-- Placeholder -->
-      <option *ngFor="let class of classifications" [value]="class.idclass">
-        {{class.nomclass}}
+      <option *ngFor="let class of classifications" [value]="class.idClass">
+        {{class.nomClass}}
       </option>
     </select>
   </div>
@@ -12,20 +12,20 @@
   <div class="row justify-content-center">
     <div class="col-md-4 mb-4" *ngFor="let medicament of medicaments">
       <div class="card shadow-sm border-success" style="width: 18rem; background-color: #f0fdf0; border-radius: 10px;">
-        <img [src]="medicament.url" alt="{{ medicament.name }}" *ngIf="medicament.url" class="card-img-top img-fluid" style="border-radius: 10px 10px 0 0;" />
+        <img [src]="medicament.url" alt="{{ medicament.nomMed}}" *ngIf="medicament.url" class="card-img-top img-fluid" style="border-radius: 10px 10px 0 0;" />
 
         <div class="card-body">
-          <h5 class="card-title text-success font-weight-bold">{{ medicament.name }}</h5>
-          <p class="card-text text-muted">{{ medicament.description }}</p>
-          <p class="card-text"><strong>Prix : </strong>{{ medicament.prix }} TND</p>
+          <h5 class="card-title text-success font-weight-bold">{{ medicament.nomMed }}</h5>
+          <p class="card-text text-muted">{{ medicament.descMed }}</p>
+          <p class="card-text"><strong>Prix : </strong>{{ medicament.prixMed }} TND</p>
           <p class="card-text"><strong>Code : </strong>{{ medicament.code }}</p>
-          <p class="card-text"><strong>Marque : </strong>{{ medicament.marque }}</p>
-          <p class="card-text"><strong>Date de création : </strong>{{ medicament.creationDate | date:'dd/MM/yyyy' }}</p>
-          <p class="card-text"><strong>Date d'expiration : </strong>{{ medicament.expirationDate | date:'dd/MM/yyyy' }}</p>
-          <p class="card-text"><strong>Classification : </strong>{{ medicament.classification.nomclass }}</p>
+          <p class="card-text"><strong>Marque : </strong>{{ medicament.marqueMed }}</p>
+          <p class="card-text"><strong>Date de création : </strong>{{ medicament.dateCreation | date:'dd/MM/yyyy' }}</p>
+          <p class="card-text"><strong>Date d'expiration : </strong>{{ medicament.dateExpiration | date:'dd/MM/yyyy' }}</p>
+          <p class="card-text"><strong>Classification : </strong>{{ medicament.classification.nomClass }}</p>
 
           <button (click)="supprimerMedicament(medicament)" class="btn btn-danger btn-block">Supprimer</button>
-          <button class="btn btn-warning btn-block" [routerLink]="['/updateMedicament', medicament.name]">Modifier</button>
+          <button class="btn btn-warning btn-block" [routerLink]="['/updateMedicament', medicament.nomMed]">Modifier</button>
         </div>
       </div>
     </div>

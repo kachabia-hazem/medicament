@@ -2,18 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { MedicamentService } from '../services/medicament.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Classification } from '../medicaments/medicaments.component';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 export interface Medicament {
-  name: string;
-  description: string;
-  prix: number;
-  marque: string;
+  idMed: number;
+  nomMed: string;
+  descMed: string;
+  prixMed: number;
+  marqueMed: string;
   url: string;
   code: number;
-  categorie:string;
-  creationDate: Date;
-  expirationDate: Date;
-  classification: Classification;  // Ajout de la classification ici
+  categorie: string;
+  dateCreation: Date;
+  dateExpiration: Date;
+  classification: Classification;
 }
 
 @Component({
@@ -22,34 +24,82 @@ export interface Medicament {
   styleUrls: ['./add-medicament.component.css']
 })
 export class AddMedicamentComponent implements OnInit {
+  myForm!: FormGroup;
+  classifications!: Classification[]; // List of classifications
 
-  newMedicament: Medicament = {
-    name: '',
-    description: '',
-    prix: 0,
-    marque: '',
-    url: '',
-    code: 0,
-    categorie:'',
-    creationDate: new Date(),
-    expirationDate: new Date(),
-    classification: { idclass: 0, nomclass: '' }  // Initialisation de la classification
-  };
-  classification!: Classification[];
-  newIdclass!: number;
-
-  constructor(private medicamentService: MedicamentService,
-    private route: ActivatedRoute,
-    private router: Router) {}
+  constructor(
+    private medicamentService: MedicamentService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.classification = this.medicamentService.ListeClassification();
+    // Fetch classifications from the service
+    this.medicamentService.listeClassifications().subscribe((cats) => {
+      this.classifications = cats;
+      console.log('Classifications:', this.classifications);
+    });
+
+    // Initialize the form
+    this.myForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      description: ['', [Validators.required]],
+      prix: ['', [Validators.required, this.prixPositifValidator]],
+      marque: ['', [Validators.required, Validators.minLength(3)]],
+      url: ['', [Validators.required, Validators.minLength(2)]],
+      code: ['', [Validators.required, Validators.minLength(2)]],
+      creationDate: ['', [Validators.required]],
+      expirationDate: ['', [Validators.required]],
+      classification: ['', [Validators.required]], // Binding classification selection
+    });
   }
 
+  // Validator for positive price
+  prixPositifValidator(control: AbstractControl) {
+    const value = control.value;
+    return value > 0 ? null : { prixNegatifOuZero: true };
+  }
+
+  // Add Medicament
   addMedicament() {
-    this.newMedicament.classification = this.classification.find(c => c.idclass === this.newIdclass)!;
-    this.medicamentService.addMedicament(this.newMedicament);
-    console.log(this.newMedicament);
-    this.router.navigate(['/medicaments']);
+    if (this.myForm.invalid) {
+      console.error('Form is invalid:', this.myForm.errors);
+      return;
+    }
+
+    const formData = this.myForm.value;
+
+    const selectedClassification = this.classifications.find(
+      (clas) => clas.idClass === +formData.classification
+    );
+
+    if (!selectedClassification) {
+      console.error('Selected classification not found');
+      return;
+    }
+
+    const newMedicament: Medicament = {
+      idMed: 0, // Default ID
+      nomMed: formData.name,
+      descMed: formData.description,
+      prixMed: formData.prix,
+      marqueMed: formData.marque,
+      url: formData.url,
+      code: formData.code,
+      categorie: '', // Default category
+      dateCreation: new Date(formData.creationDate),
+      dateExpiration: new Date(formData.expirationDate),
+      classification: selectedClassification,
+    };
+    console.log(newMedicament);
+    this.medicamentService.ajouterMedicament(newMedicament).subscribe(
+      (med) => {
+        console.log('Medicament added:', med);
+        this.router.navigate(['/medicaments']);
+      },
+      (error) => {
+        console.error('Error adding medicament:', error);
+      }
+    );
   }
 }

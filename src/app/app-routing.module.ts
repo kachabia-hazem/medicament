@@ -10,6 +10,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { medGuard } from './med.guard';
 import { register } from 'module';
 import { RegisterComponent } from './register/register.component';
+import { ListeCategoriesComponent } from './liste-categories/liste-categories.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:"rechercheParCategorie",component:RechercheParCategorieComponent,canActivate:[medGuard]},
   {path:"richercheParnom",component:RichercheParNomComponent,canActivate:[medGuard]},
   {path: 'app-forbidden', component: ForbiddenComponent},
-  {path:'register',component:RegisterComponent}
+  {path:'register',component:RegisterComponent},
+  {path: "listeCategories", component : ListeCategoriesComponent}
 
 
   

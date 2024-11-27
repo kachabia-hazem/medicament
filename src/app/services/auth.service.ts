@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user'; // Modèle d'utilisateur
-import { Router } from '@angular/router'; // Corrigé : import correct de Router depuis Angular
+import { User } from '../models/user'; 
+import { Router } from '@angular/router'; 
 
 @Injectable({
   providedIn: 'root'
@@ -9,19 +9,19 @@ export class AuthService {
   // Liste d'utilisateurs fictifs avec rôles
   users: User[] = [
     { "username": "admin", "password": "123", "roles": ['ADMIN'], "email": "username@gmail.com", "enabled": true },
-    { "username": "nadhem", "password": "123", "roles": ['USER'], "email": "ndhem@gmail.com", "enabled": true }
+    { "username": "hazem", "password": "321", "roles": ['USER'], "email": "hazem@gmail.com", "enabled": true }
   ];
 
-  public loggedUser!: string; // Utilisateur connecté
-  public isloggedIn: boolean = false; // Etat de connexion
-  public roles!: string[]; // Rôles de l'utilisateur connecté
+  public loggedUser!: string; 
+  public isloggedIn: boolean = false; 
+  public roles!: string[]; 
 
   constructor(private router: Router) { }
 
   // Déconnexion de l'utilisateur
   logout() {
     this.isloggedIn = false;
-    this.loggedUser = ''; // Remis à une chaîne vide
+    this.loggedUser = ''; 
     this.roles = [];
     localStorage.removeItem('loggedUser'); // Suppression des infos du localStorage
     localStorage.setItem('isloggedIn', String(this.isloggedIn));
@@ -61,7 +61,7 @@ export class AuthService {
 
   // Vérifie si l'utilisateur est connecté
   isUserLoggedIn(): boolean {
-    return localStorage.getItem('isloggedIn') === 'true'; // Vérifie l'état de connexion dans localStorage
+    return localStorage.getItem('isloggedIn') === 'true'; 
   }
 
   setLoggedUserFromLocalStorage(login: string) {
